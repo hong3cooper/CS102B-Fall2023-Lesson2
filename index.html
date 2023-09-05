@@ -1,0 +1,587 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>CS102B - Lesson 2 - Types, Variables, Operators</title>
+
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+		<link rel="stylesheet" href="dist/theme/black.css">
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="plugin/highlight/monokai.css">
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+					<h1>CS102B - Lesson 2</h1>
+					<h3>Types, Variables, Operators</h3>
+					<p>
+						<small>Instructor: Professor Hong</small>
+					</p>
+				</section>
+
+				<section>
+					<h2>Review & Questions</h2>
+				</section>
+				<section>
+					<section data-markdown>
+						<script type="text/template">
+							## Intro to Github
+						</script>
+					</section>
+					
+					<section data-markdown>
+						<script type="text/template">
+							## Setting Up Your Git Envir & SSH Keys
+							Setting up your github user name and email:
+							```
+							$ git config --global user.name "Your Name"
+							$ git config --global user.email "yourEmail.cooper.edu"
+							```
+							Set up your ssh key:
+							```
+							$ ssh-keygen -C "me@cooper.edu" -t rsa 
+							$ cat .ssh/id_rsa.pub
+							```
+							Copy the key and put it in your account settings.
+							
+							More info can be found here: 
+							<a href="https://help.github.com/articles/connecting-to-github-with-ssh/">
+							https://help.github.com/articles/connecting-to-github-with-ssh/
+							</a>
+						</script>
+					</section>
+					
+					<section data-markdown>
+						<script type="text/template">
+							## Creating a repo for hello.c
+							* Go to github.com
+							* Create a new repository and initialize with a README
+							* Clone with SSH and copy the link and run the following
+							```
+							$ git clone git@github.com:yourUserName/repoName.git
+							```
+						</script>
+					</section>
+					
+					<section data-markdown>
+						<script type="text/template">
+							## Creating a separate branch
+							* To create a separate branch:
+							```
+							$ git checkout -b helloBranch
+							```
+							* Copy your hello.c file into the directory and add and commit it with:
+							```
+							$ git add hello.c
+							$ git commit -m "first commit"
+							```
+							* Now push your branch to github:
+							```
+							$ git push origin helloBranch
+							```
+						</script>
+					</section>
+					
+					<section data-markdown>
+						<script type="text/template">
+							## Creating a Pull Request & Merging to Main
+							* Go to the main github page and create a new pull request.
+							* The first branch is what you're merging into.
+							* Add some comments and click "Create pull request"
+							* You can now do a code review in the Files changed tab
+							* Lastly, click "Merge pull request" to merge it to the main branch.
+						</script>
+					</section>
+				</section>
+
+
+				<section>
+					<section data-markdown>
+						<script type="text/template">
+							## How to do HW
+						</script>
+					</section>
+					
+					<section data-markdown>
+						<script type="text/template">
+							## How to do HW
+							* Go to the homework link and make a team.
+							* Clone your team's repo:
+							```
+							$ git clone <link>
+							```
+							* Answer your question in the respective folders and named appropriately:
+							```
+							$ cd question1
+							$ vim q1.sh
+							```
+							* Make the changes in the file, save, and commit the file.
+						</script>
+					</section>
+					
+					<section data-markdown>
+						<script type="text/template">
+							## How to do HW
+							* To commit the file, do the following:
+							```
+							$ git status
+							$ git add q1.sh
+							$ git status
+							$ git commit -m "Finished question 1"
+							```
+							* Make sure to put your own comments for the commit message.
+						</script>
+					</section>
+					
+					<section data-markdown>
+						<script type="text/template">
+							## How to do HW
+							* Now push the main branch to github:
+							```
+							$ git push origin main
+							```
+							* The home will autograde and it will also create a pull request for feedback.
+						</script>
+					</section>
+					
+					<section data-markdown>
+						<script type="text/template">
+							## How to do HW  
+							* Sample for question 2:  
+							```
+							$ cd question2  
+							$ vim q2.c  
+							```
+							
+							* Make the changes in the file.  
+							
+							```
+							$ git status
+							$ git add q2.c
+							$ git status
+							$ git commit -m "Finished question 2!"
+							```
+						</script>
+					</section>
+
+					<section data-markdown>
+						<script type="text/template">
+							## How to do HW
+							* Now push the main branch to github:
+							```
+							$ git push origin main
+							```
+							* Your pull request will be updated and the autograder will regrade the homework.
+						</script>
+					</section>
+				</section>
+				
+					
+				<section>
+					<section data-markdown>
+						<script type="text/template">
+							## Types, Variables, Operations
+						</script>
+					</section>
+					
+					<section data-markdown>
+						<script type="text/template">
+							## Types
+							```
+							char a; // a single byte
+							int i; // an integer; max is based on machine
+							float f; // single-precision floating point number
+							double d; // double-precision floating point number
+							short int si; // decreases the size of an int; int can be omitted
+							long int li; // increase the size of an int; int can be omitted
+							```
+						</script>
+					</section>
+					
+					<section data-markdown>
+						<script type="text/template">
+							## Variables - Restrictions
+							* Begins with a letter
+							* Consists of letters and numbers
+							* The understore "_" counts as a letter
+							* Case sensitive
+							* Use lower case for variable names & all caps for constants
+							* Cannot use reserved keywords
+						</script>
+					</section>
+					
+					<section data-markdown>
+						<script type="text/template">
+							## Variables - Best Practices
+							* When giving variable names, please provide good variable names.
+							
+							```
+							char a;
+							int aa;
+							short aaa; // these are bad!
+							
+							char firstInitial;
+							int totalMilesTravelled;
+							short currentFlightMiles;
+							```
+						</script>
+					</section>
+					
+					<section data-markdown>
+						<script type="text/template">
+							## Constants
+							* Numbers are constants  
+							
+							```
+							int a = 1234; // no suffix
+							long l = 123456789L; // suffix of l or L
+							unsigned long ul = 123456789U; // suffix of u, U, ul, or UL
+							double d = 1.234;
+							float f = 1.234f; // suffix of f or F
+							long double ld = 1.234l; // suffix of l or L
+							
+							int octal = 037; // decimal 31
+							int hex = 0x1f // decimal 31
+							```
+						</script>
+					</section>
+					
+					<section data-markdown>
+						<script type="text/template">
+							## More constants
+							* You can create constants with #define
+							
+							```
+							#include <stdio.h>
+							#define PI 3.14
+							
+							void main()
+							{
+								int radius = 2;
+								float area = PI * radius * radius;
+								printf("%f", area);
+								return;
+							}
+							```
+						</script>
+					</section>
+					
+					<section data-markdown>
+						<script type="text/template">
+							## Enums
+							* You can create constants with enum
+							
+							```
+							#include <stdio.h>
+							
+							enum daysOfTheWeek {
+								SUN = 0,
+								MON = 1,
+								TUE = 2,
+								WED = 3,
+								THU = 4,
+								FRI = 5,
+								SAT = 6
+							};
+							
+							void main()
+							{
+								enum daysOfTheWeek day;
+								day = MON;
+								printf("%d", day);
+								return;
+							}
+							```
+						</script>
+					</section>
+					
+					<section data-markdown>
+						<script type="text/template">
+							## Operations
+							* PEMDAS
+							  * Parentheses
+							  * Exponents
+							  * Multiplication & Division
+							  * Addition & Subtraction
+						</script>
+					</section>
+					
+					<section data-markdown>
+						<script type="text/template">
+							## Example
+							* Convert 35&deg;F to &deg;C.  
+							
+							```
+#include <stdio.h>
+
+/* Prints the conversion of a given Fahrenheit to Celsius */
+
+void main()
+{
+    int fahr = 35;
+    int celsius;
+    celsius = 5 * (fahr-32) / 9;
+    printf("%d\n", celsius);
+
+    return;
+}
+							```
+						</script>
+					</section>
+					
+					<section data-markdown>
+						<script type="text/template">
+							## Try it out!
+							* Convert 22&deg;C to &deg;F.
+						</script>
+					</section>
+				</section>
+				
+				
+				<section>
+					<section data-markdown>
+						<textarea data-template>
+						## Type Conversions
+						</textarea>
+					</section>
+					
+					<section data-markdown>
+						<textarea data-template>
+						## Adding a float and an int
+						```
+#include <stdio.h>
+
+int main()
+{
+    float f = 1.5f;
+    int i = 3;
+    int result = i + f;
+    printf("%d", result);
+
+    return 0;
+}
+						```
+						Note that precision is lost if storing in an int.
+						</textarea>
+					</section>
+						
+					<section data-markdown>
+						<textarea data-template>
+						## Adding a float and an int
+						```
+#include <stdio.h>
+
+int main()
+{
+    float f = 1.5f;
+    int i = 3;
+    float result = i + f;
+    printf("%f", result);
+
+    return 0;
+}
+						```
+						Note that the int is implicitly convert to a float in the addition.
+						</textarea>
+					</section>
+						
+					<section data-markdown>
+						<textarea data-template>
+						## Limits
+						```
+#include <stdio.h>
+#include <limits.h>
+
+int main()
+{
+    printf("CHAR_MIN: %d\n", CHAR_MIN);
+    printf("CHAR_MAX: %d\n", CHAR_MAX);
+    printf("SHRT_MIN: %d\n", SHRT_MIN);
+    printf("SHRT_MAX: %d\n", SHRT_MAX);
+    printf("INT_MIN: %d\n", INT_MIN);
+    printf("INT_MAX: %d\n", INT_MAX);
+    printf("UINT_MAX: %d\n", UINT_MAX);
+    return 0;
+}
+						```
+						<a href="http://www.cplusplus.com/reference/climits/">
+						http://www.cplusplus.com/reference/climits/
+						</a>
+						</textarea>
+					</section>
+						
+					<section data-markdown>
+						<textarea data-template>
+						## Wrapping
+						```
+#include <stdio.h>
+
+int main()
+{
+    char c = 'C';
+    printf("%c", c + 255);
+    return 0;
+}
+						```
+						<a href="http://www.cplusplus.com/reference/climits/">
+						http://www.cplusplus.com/reference/climits/
+						</a>
+						</textarea>
+					</section>
+						
+					<section data-markdown>
+						<textarea data-template>
+						## Casting
+						* Not recommended as it is "hacky"
+						* <code>(type-name) expression</code> 
+						* This will force the expression to be the type you specified
+						</textarea>
+					</section>
+					<section data-markdown>
+						<textarea data-template>
+						## Casting Example
+						* Be **very** careful when casting types as it can lead to unexpected behaviors.
+							
+						```
+#include <stdio.h>
+#include <math.h>
+
+int main()
+{
+    float f = 4.5f;
+    double result = sqrt(f);
+    printf("%f\n", result);
+
+    double castResult = sqrt((int) f);
+    printf("%f\n", castResult);
+    return 0;
+}
+						```
+							
+						</textarea>
+					</section>
+							
+				</section>
+				
+				<section>
+					<section data-markdown>
+						<textarea data-template>
+						## Relational & Logical Operators
+						</textarea>
+					</section>
+					
+					<section data-markdown>
+						<textarea data-template>
+						## Relational & Equailty Operators
+						Relational Operators:
+						* <code>></code> -- greater than
+						* <code>>=</code> -- greater than or equal to
+						* <code><</code> -- less than
+						* <code><=</code> -- less than or equal to
+							
+						Equality Operators:
+						* <code>==</code> -- equal to; note that you use 2 = signs
+						* <code>!=</code> -- not equal to
+							
+						These operators result in a boolean (true or false).
+						</textarea>	
+					</section>
+							
+					<section data-markdown>
+						<textarea data-template>
+						## Relational Operators Example
+							
+						```
+#include <stdio.h>
+#include <stdbool.h>
+
+int main()
+{
+    bool b = 5 < 2;
+    printf("%d", b);
+
+    return 0;
+}
+						```
+						We generally don't print out bools like in the example above.
+	    				</textarea>	
+					</section>
+							
+					<section data-markdown>
+						<textarea data-template>
+						## Logical Operators:
+						* <code>&&</code> -- logical and
+						* <code>||</code> -- logical or
+		
+						* These operators also result in a boolean (true or false).  
+						* For numeric types, 0 is equivalent to false and any non-zero is true. 
+						* These are different from bitwise operations which we will learn later.
+	   					</textarea>
+					</section>
+						
+					<section data-markdown>
+						<textarea data-template>
+						## Logical Operators Example  
+	    
+						```
+#include <stdio.h>
+#include <stdbool.h>
+
+int main()
+{
+    bool b = (true && false);
+    printf("%d", b);
+
+    return 0;
+}
+						```
+						Note: We generally don't print out bools like in the example above.
+		   				</textarea>
+					</section>
+							
+					<section data-markdown>
+						<textarea data-template>
+						## The Unary Operator '!'
+						* Negates the boolean
+						* <code>!0</code> -- true
+						* <code>!1</code> -- false
+						* <code>!100</code> -- false
+						* <code>!(5 < 2)</code> -- true
+						* <code>!((5 < 2) || !(3 < 1))</code> -- false
+	   					</textarea>
+					</section>
+						
+				</section>
+					
+				<section data-markdown>
+					<textarea data-template>
+						## Homework  
+						[https://classroom.github.com/a/a1OJpKc9](https://classroom.github.com/a/a1OJpKc9)  
+						due 09/17 @ 11:59PM
+	   				</textarea>
+				</section>
+			</div>
+		</div>
+
+		<script src="dist/reveal.js"></script>
+		<script src="plugin/notes/notes.js"></script>
+		<script src="plugin/markdown/markdown.js"></script>
+		<script src="plugin/highlight/highlight.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				hash: true,
+
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+			});
+		</script>
+	</body>
+</html>
